@@ -53,7 +53,12 @@ app.get("/:word/echo", function(req,res){
 });
 
 //freecodecamp Get Query Parameter Input from the Client
+app.get("/name", function(req,res){
+res.json({"name": req.query.first + " " + req.query.last });
+console.log(req.query);
+});
 
+//free code camp Use body-parser to Parse POST Requests
 
 //freecodecamp use of console.log
 console.log("Hello World");
