@@ -46,6 +46,13 @@ app.get("/now", function(req, res, next){
     res.json({time: req.time});
 });
 
+//freecodecamp Get Route Parameter Input from the Client
+
+app.get("/:word/echo", function(req,res){
+    res.json({echo: req.params.word});
+});
+
+//freecodecamp Get Query Parameter Input from the Client
 
 
 //freecodecamp use of console.log
