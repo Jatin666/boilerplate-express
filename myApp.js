@@ -7,7 +7,7 @@ require('dotenv').config();
 //     });
     
 //freecodecamp Implement a Root-Level Request Logger Middleware
-app.use(function (req, res, next){
+app.use(function (req, res, next){ //it is running on all the directories
     console.log(req.method + " " + req.path + " - " +req.ip)
     next();
 });
@@ -28,6 +28,25 @@ app.get("/json", function(req, res){
         jsonResponse.message = jsonResponse.message.toUpperCase()}
         res.json(jsonResponse);
 });
+
+
+
+//freecodecamp Chain Middleware to Create a Time Server
+//in this i made a new function which returns the time to string and sop retrun the string and save the request and req.time is the key to to string and .json is responding thet time and request the time
+
+function getTheCurrentTimeString(){
+    return new Date().toString();
+}
+
+app.get("/now", function(req, res, next){
+    req.time = getTheCurrentTimeString();
+    next();
+
+},function (req,res){
+    res.json({time: req.time});
+});
+
+
 
 //freecodecamp use of console.log
 console.log("Hello World");
