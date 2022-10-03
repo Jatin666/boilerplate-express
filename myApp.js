@@ -2,6 +2,7 @@ let express = require('express');
 let app = express();
 let absolutePath = __dirname + "/views/index.html";
 require('dotenv').config();
+var bodyParser = require('body-parser')
 // app.get("/", (req, res)=> {
 //     res.send("Hello World")
 //     });
@@ -11,6 +12,16 @@ app.use(function (req, res, next){ //it is running on all the directories
     console.log(req.method + " " + req.path + " - " +req.ip)
     next();
 });
+
+//free code camp Use body-parser to Parse POST Requests
+//mount the body-parser middleware here
+app.use(bodyParser.urlencoded({extended: false}))
+//parse application json
+app.use(bodyParser.json())
+
+// app.get("/body-parsed-info", function(req,res){
+//     console.log(bodyParser);
+// });
 
 
 
@@ -58,7 +69,13 @@ res.json({"name": req.query.first + " " + req.query.last });
 console.log(req.query);
 });
 
-//free code camp Use body-parser to Parse POST Requests
+app.post("/name", function(req,res){
+    res.json({"name": req.body.first + " " + req.body.last });
+});
+
+
+
+
 
 //freecodecamp use of console.log
 console.log("Hello World");
